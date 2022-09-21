@@ -26,8 +26,9 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
-    backgroundColor: '#72063c',
+    backgroundColor: '#4e0329',
     borderRadius: 8,
+
     elevation: 4, // ANDROID ONLY property to add shadow behind the component on which this style is applied.
     
     // IOS only properties of adding shadow behind a component
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
   },
   numberInput: {
     height: 50,
-    width: '100%',
+    width: 38,
     fontSize: 32,
     borderBottomColor: '#ddb52f',
     borderBottomWidth: 2,
