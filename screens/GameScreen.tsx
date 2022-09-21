@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import Title from '../components/Title';
 
 function GameScreen() {
   return (
     <View style={styles.screen}>
-      <Text>Opponent's Guess</Text>
+      <Title>Opponent's Guess</Title>
       {/* GUESS */}
       <View>
         <Text>Higher or Lower ?</Text>
@@ -31,6 +32,14 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 12, // To add some distance from device edges
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'yellow',
+    textAlign: 'center',
+    borderColor: 'yellow',
+    borderWidth: 2,
   },
 });
 
