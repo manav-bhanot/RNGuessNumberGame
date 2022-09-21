@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   buttonOuterContainer: {
     borderRadius: 28,
     margin: 4,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   buttonInnerContainer: {
     backgroundColor: '#72063c',
@@ -42,9 +42,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   pressed: {
     opacity: 0.75, // opacity takes in values between 0 and 1. 0 => 0% opaque and 100% transparent and 1 => 100% opaque and 0% transparent
-  }
-})
+  },
+});

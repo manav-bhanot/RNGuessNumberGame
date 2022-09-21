@@ -1,3 +1,4 @@
+/* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
 /**
  * Sample React Native App
@@ -10,12 +11,26 @@
  */
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
+import GameScreen from './screens/GameScreen';
 // import {LinearGradient} from 'react-native-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 
 export default function App() {
+
+  const [numberEntered, setNumberEntered] = useState();
+
+  const numberEnteredHandler = (num: any) => {
+    setNumberEntered(num);
+  };
+  
+  let screen = <StartGameScreen onNumberEntered={numberEnteredHandler} />;
+
+  // Switch over to display game screen once the user has entered a number.
+  if (numberEntered) {
+    screen = <GameScreen />;
+  }
 
   return (
     <View style={styles.rootScreen}>
@@ -24,11 +39,11 @@ export default function App() {
         resizeMode="cover"
         imageStyle={styles.backgroundImage}
         style={styles.imageBackgroundView}>
-        <StartGameScreen />
+        {screen}
       </ImageBackground>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   rootScreen: {
@@ -40,5 +55,5 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     opacity: 0.15,
-  }
+  },
 });

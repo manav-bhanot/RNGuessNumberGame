@@ -1,13 +1,12 @@
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable radix */
 /* eslint-disable prettier/prettier */
-/* eslint-disable react-native/no-inline-styles */
 
 import {Alert, StyleSheet, TextInput, View} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import React, { useState } from 'react';
 
-function StartGameScreen() {
+function StartGameScreen(props: any) {
 
   const [enteredNumber, setEnteredNumber] = useState('');
 
@@ -25,6 +24,8 @@ function StartGameScreen() {
       ]);
       return;
     }
+
+    props.onNumberEntered(num);
   };
 
   const resetInputHandler = () => {
