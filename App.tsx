@@ -12,23 +12,23 @@
 
 
 import React, { useState } from 'react';
-import {StyleSheet, View, ImageBackground} from 'react-native';
+import {StyleSheet, View, ImageBackground, SafeAreaView} from 'react-native';
 import GameScreen from './screens/GameScreen';
 // import {LinearGradient} from 'react-native-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
 
 export default function App() {
 
-  const [numberEntered, setNumberEntered] = useState();
+  const [userNumber, setUserNumber] = useState();
 
-  const numberEnteredHandler = (num: any) => {
-    setNumberEntered(num);
+  const pickedNumberHandler = (pickerNumber: any) => {
+    setUserNumber(pickerNumber);
   };
   
-  let screen = <StartGameScreen onNumberEntered={numberEnteredHandler} />;
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   // Switch over to display game screen once the user has entered a number.
-  if (numberEntered) {
+  if (userNumber) {
     screen = <GameScreen />;
   }
 
@@ -39,7 +39,7 @@ export default function App() {
         resizeMode="cover"
         imageStyle={styles.backgroundImage}
         style={styles.imageBackgroundView}>
-        {screen}
+        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
       </ImageBackground>
     </View>
   );

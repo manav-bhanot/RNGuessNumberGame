@@ -25,7 +25,7 @@ function StartGameScreen(props: any) {
       return;
     }
 
-    props.onNumberEntered(num);
+    props.onPickNumber(num);
   };
 
   const resetInputHandler = () => {
