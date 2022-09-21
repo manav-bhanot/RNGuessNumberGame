@@ -1,10 +1,14 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-trailing-spaces */
 import React from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
 
-function PrimaryButton(props) {
-  function pressHandler() {
+function PrimaryButton(props: any) {
+  
+  const pressHandler = () => {
     console.log('Button Presed');
-  }
+    props.onPress(); // This is basically executing the function confirmInputHandler defined in StartGameScreen
+  };
 
   return (
     <View style={styles.buttonOuterContainer}>
