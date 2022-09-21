@@ -13,6 +13,7 @@
 
 import React, { useState } from 'react';
 import {StyleSheet, View, ImageBackground, SafeAreaView} from 'react-native';
+import Colors from './constants/Colors';
 import GameScreen from './screens/GameScreen';
 // import {LinearGradient} from 'react-native-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
@@ -47,7 +48,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   rootScreen: {
-    backgroundColor: '#ddb52f',
+    backgroundColor: Colors.accent500,
     flex: 1,
   },
   imageBackgroundView: {

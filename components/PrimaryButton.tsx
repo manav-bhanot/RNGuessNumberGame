@@ -2,6 +2,7 @@
 /* eslint-disable no-trailing-spaces */
 import React from 'react';
 import {View, Text, Pressable, StyleSheet} from 'react-native';
+import Colors from '../constants/Colors';
 
 function PrimaryButton(props: any) {
   
@@ -19,7 +20,7 @@ function PrimaryButton(props: any) {
             : styles.buttonInnerContainer
         }
         onPress={pressHandler}
-        android_ripple={{color: 'white'}}>
+        android_ripple={{color: Colors.primaryWhite}}>
         <Text style={styles.buttonText}>{props.children}</Text>
       </Pressable>
     </View>
@@ -35,13 +36,13 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   buttonInnerContainer: {
-    backgroundColor: '#72063c',
+    backgroundColor: Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 2,
   },
   buttonText: {
-    color: 'white',
+    color: Colors.primaryWhite,
     textAlign: 'center',
   },
   pressed: {
