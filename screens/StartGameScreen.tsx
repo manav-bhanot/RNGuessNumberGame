@@ -1,4 +1,7 @@
-import {StyleSheet, TextInput, View} from 'react-native'
+/* eslint-disable prettier/prettier */
+/* eslint-disable react-native/no-inline-styles */
+
+import {StyleSheet, TextInput, View} from 'react-native';
 import PrimaryButton from '../components/PrimaryButton';
 import React from 'react';
 
@@ -10,11 +13,17 @@ function StartGameScreen() {
         style={styles.numberInput}
         maxLength={2}
         keyboardType="number-pad"
-        autoCapitalize='none'
+        autoCapitalize="none"
         autoCorrect={false}
       />
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 }
@@ -23,6 +32,8 @@ export default StartGameScreen;
 
 const styles = StyleSheet.create({
   inputContainer: {
+    justifyContent: 'center', // Position elements along the main axis which by default is column (top to bottom). Default flex direction in RN is COLUMN
+    alignItems: 'center', // Default value is stretch. Positions elements in the cross axis which is OPPOSITE of the main axis
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
@@ -30,7 +41,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
 
     elevation: 4, // ANDROID ONLY property to add shadow behind the component on which this style is applied.
-    
+
     // IOS only properties of adding shadow behind a component
     shadowColor: 'black',
     shadowOffset: {
@@ -50,5 +61,11 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: 'bold',
     textAlign: 'center',
-  }
-})
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+});
