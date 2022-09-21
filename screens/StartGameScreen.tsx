@@ -20,7 +20,7 @@ function StartGameScreen() {
     const num = parseInt(enteredNumber);
 
     if (isNaN(num) || num <= 0 || num > 99) {
-      Alert.prompt('Invalid Number!', 'Number should be between 1 and 99.', [
+      Alert.alert('Invalid Number!', 'Number should be between 1 and 99.', [
         {text: 'Okay', style: 'destructive', onPress: resetInputHandler},
       ]);
       return;
