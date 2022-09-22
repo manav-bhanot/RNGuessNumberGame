@@ -70,14 +70,18 @@ function GameScreen(this: any, props: any) {
       <Title>Opponent's Guess</Title>
       <NumberContainer>{guessedNumber}</NumberContainer>
       <Card>
-        <InstructionText>Higher or Lower ?</InstructionText>
-        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-          <PrimaryButton onPress={guessNewNumber.bind(this, 'lower')}>
-            Guess Lower
-          </PrimaryButton>
-          <PrimaryButton onPress={guessNewNumber.bind(this, 'higher')}>
-            Guess Higher
-          </PrimaryButton>
+        <InstructionText style={styles.instructionText}>Higher or Lower ?</InstructionText>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={guessNewNumber.bind(this, 'lower')}>
+              Guess Lower
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={guessNewNumber.bind(this, 'higher')}>
+              Guess Higher
+            </PrimaryButton>
+          </View>
         </View>
       </Card>
       <View>
@@ -93,5 +97,15 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 12, // To add some distance from device edges
+  },
+  instructionText: {
+    marginBottom: 24,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
