@@ -5,8 +5,8 @@ import {StyleSheet, Text, View} from 'react-native';
 
 function Title(props: any) {
   return (
-    <View>
-      <Text style={styles.title}>{props.children}</Text>
+    <View style={styles.rootContainer}>
+      <Text style={[styles.title, props.style]}>{props.children}</Text>
     </View>
   );
 }
@@ -14,12 +14,19 @@ function Title(props: any) {
 export default Title;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    borderColor: 'white',
-    borderWidth: 2,
+    paddingVertical: 10,
+    marginHorizontal: 64,
   },
 });
