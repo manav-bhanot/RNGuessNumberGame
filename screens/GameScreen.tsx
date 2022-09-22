@@ -21,7 +21,7 @@ const generateRandomBetween: any = (min: any, max: any, exclude: any) => {
   return randomNum;
 };
 
-let minBoundary = 0;
+let minBoundary = 1;
 let maxBoundary = 100;
 
 function GameScreen(this: any, props: any) {
@@ -40,6 +40,11 @@ function GameScreen(this: any, props: any) {
       props.onGameOver();
     }
   }, [props.userPickedNumber, props.onGameOver, guessedNumber]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
 
   const guessNewNumber = (direction: string) => {
     // direction = higher if the number to be guessed needs to be higher than the previous guess
