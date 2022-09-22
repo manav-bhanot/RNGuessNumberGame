@@ -18,7 +18,7 @@ function GameOverScreen(props: any) {
       </View>
       <View>
         <Text style={styles.summaryText}>
-          Your phone needed <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
+          Your phone took <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
           guess the number <Text style={styles.highlight}>{props.userPickedNumber}</Text>
         </Text>
       </View>

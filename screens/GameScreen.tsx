@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
 import React, {useState, useEffect} from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, FlatList, StyleSheet, Text, View} from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -34,6 +35,9 @@ function GameScreen(this: any, props: any) {
 
   const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
+  const [guessRoundsArray, setGuessRoundsArray] = useState([initialGuess]);
+
+  // The code in this effect is executed only when there is a change in the dependencies.
   useEffect(() => {
     if (guessedNumber === props.userPickedNumber) {
       // Call a function in App.js so as to change the state and hide the game screen and load the game over screen
@@ -41,6 +45,9 @@ function GameScreen(this: any, props: any) {
     }
   }, [props.userPickedNumber, props.onGameOver, guessedNumber]);
 
+  // Adding an empty array of dependencies in useEffect => that this effect will only execute when
+  // this GameScreen component is executed the very first time and there will not be any executions
+  // of this effect when this componennt reloads because of some state change.
   useEffect(() => {
     minBoundary = 1;
     maxBoundary = 100;
@@ -68,6 +75,7 @@ function GameScreen(this: any, props: any) {
 
     const newGuess = minBoundary + Math.floor((maxBoundary - minBoundary) / 2);
     setGuessedNumber(newGuess);
+    setGuessRoundsArray(prevGuessRoundsArray => [newGuess, ...prevGuessRoundsArray]);
   };
 
   return (
@@ -75,7 +83,9 @@ function GameScreen(this: any, props: any) {
       <Title>Opponent's Guess</Title>
       <NumberContainer>{guessedNumber}</NumberContainer>
       <Card>
-        <InstructionText style={styles.instructionText}>Higher or Lower ?</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Higher or Lower ?
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton onPress={guessNewNumber.bind(this, 'lower')}>
@@ -90,7 +100,14 @@ function GameScreen(this: any, props: any) {
         </View>
       </Card>
       <View>
-        <Text>Log The Guessed Rounds</Text>
+        {/* {guessRoundsArray.map(guessRound => (
+          <Text key={guessRound}>{guessRound}</Text>
+        ))} */}
+        <FlatList
+          data={guessRoundsArray}
+          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          keyExtractor={(item) => item}
+        />
       </View>
     </View>
   );
