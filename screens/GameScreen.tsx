@@ -6,6 +6,8 @@ import {Alert, StyleSheet, Text, View} from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import Card from '../components/ui/Card';
+import InstructionText from '../components/ui/InstructionText';
 
 // The initial random number guessed by the app.
 // We do not want the first random number which is guessed by app to be equal to what the user has picked
@@ -67,8 +69,8 @@ function GameScreen(this: any, props: any) {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{guessedNumber}</NumberContainer>
-      <View>
-        <Text>Higher or Lower ?</Text>
+      <Card>
+        <InstructionText>Higher or Lower ?</InstructionText>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
           <PrimaryButton onPress={guessNewNumber.bind(this, 'lower')}>
             Guess Lower
@@ -77,7 +79,7 @@ function GameScreen(this: any, props: any) {
             Guess Higher
           </PrimaryButton>
         </View>
-      </View>
+      </Card>
       <View>
         <Text>Log The Guessed Rounds</Text>
       </View>

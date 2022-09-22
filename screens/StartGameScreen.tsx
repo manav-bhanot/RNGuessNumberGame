@@ -6,6 +6,9 @@ import {Alert, StyleSheet, TextInput, View} from 'react-native';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import React, { useState } from 'react';
 import Colors from '../constants/Colors';
+import Title from '../components/ui/Title';
+import Card from '../components/ui/Card';
+import InstructionText from '../components/ui/InstructionText';
 
 function StartGameScreen(props: any) {
 
@@ -35,24 +38,28 @@ function StartGameScreen(props: any) {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.numberInput}
-        maxLength={2}
-        keyboardType="number-pad"
-        autoCapitalize="none"
-        autoCorrect={false}
-        value={enteredNumber}
-        onChangeText={numberInputHandler}
-      />
-      <View style={styles.buttonsContainer}>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+    <View style={styles.rootContainer}>
+      <Title>Guess My Number</Title>
+      <Card>
+        <InstructionText>Enter a Number</InstructionText>
+        <TextInput
+          style={styles.numberInput}
+          maxLength={2}
+          keyboardType="number-pad"
+          autoCapitalize="none"
+          autoCorrect={false}
+          value={enteredNumber}
+          onChangeText={numberInputHandler}
+        />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
+          </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
-        </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -60,10 +67,15 @@ function StartGameScreen(props: any) {
 export default StartGameScreen;
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    marginTop: 100,
+    alignItems: 'center',
+  },
   inputContainer: {
     justifyContent: 'center', // Position elements along the main axis which by default is column (top to bottom). Default flex direction in RN is COLUMN
     alignItems: 'center', // Default value is stretch. Positions elements in the cross axis which is OPPOSITE of the main axis
-    marginTop: 100,
+    marginTop: 36,
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: '#4e0329',
