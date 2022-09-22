@@ -7,8 +7,7 @@ import Colors from '../../constants/Colors';
 function PrimaryButton(props: any) {
   
   const pressHandler = () => {
-    console.log('Button Presed');
-    props.onPress(); // This is basically executing the function confirmInputHandler defined in StartGameScreen
+    props.onPress(); // This is basically executing the function assigned to onPress attribute of this button wherever it is used.
   };
 
   return (
