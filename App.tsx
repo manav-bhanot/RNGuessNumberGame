@@ -22,15 +22,15 @@ export default function App() {
 
   const [userNumber, setUserNumber] = useState();
 
-  const pickedNumberHandler = (pickerNumber: any) => {
-    setUserNumber(pickerNumber);
+  const pickedNumberHandler = (pickedNumber: any) => {
+    setUserNumber(pickedNumber);
   };
   
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   // Switch over to display game screen once the user has entered a number.
   if (userNumber) {
-    screen = <GameScreen />;
+    screen = <GameScreen userPickedNumber={userNumber} />;
   }
 
   return (
