@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 
 import {Alert, StyleSheet, TextInput, View} from 'react-native';
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryButton from '../components/ui/PrimaryButton';
 import React, { useState } from 'react';
 import Colors from '../constants/Colors';
 
