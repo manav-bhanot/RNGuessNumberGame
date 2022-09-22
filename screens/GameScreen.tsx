@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
@@ -31,6 +32,13 @@ function GameScreen(this: any, props: any) {
 
   const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
+  useEffect(() => {
+    if (guessedNumber === props.userPickedNumber) {
+      // Call a function in App.js so as to change the state and hide the game screen and load the game over screen
+      props.onGameOver();
+    }
+  }, [props.userPickedNumber, props.onGameOver, guessedNumber]);
+
   const guessNewNumber = (direction: string) => {
     // direction = higher if the number to be guessed needs to be higher than the previous guess
     // direction = lower if the number to be guessed needs to be lower than the previous guess => change max to previous guessed number
@@ -53,10 +61,6 @@ function GameScreen(this: any, props: any) {
 
     const newGuess = minBoundary + Math.floor((maxBoundary - minBoundary) / 2);
     setGuessedNumber(newGuess);
-
-    if (newGuess === props.userPickedNumber) {
-      console.log('Number is guessed. Game Over !!!');
-    }
   };
 
   return (

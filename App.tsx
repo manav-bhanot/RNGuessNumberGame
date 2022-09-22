@@ -14,6 +14,7 @@
 import React, { useState } from 'react';
 import {StyleSheet, View, ImageBackground, SafeAreaView} from 'react-native';
 import Colors from './constants/Colors';
+import GameOverScreen from './screens/GameOverScreen';
 import GameScreen from './screens/GameScreen';
 // import {LinearGradient} from 'react-native-linear-gradient';
 import StartGameScreen from './screens/StartGameScreen';
@@ -21,16 +22,27 @@ import StartGameScreen from './screens/StartGameScreen';
 export default function App() {
 
   const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
 
   const pickedNumberHandler = (pickedNumber: any) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
+  };
+
+  const gameOverHandler = () => {
+    setGameIsOver(true);
   };
   
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
 
   // Switch over to display game screen once the user has entered a number.
   if (userNumber) {
-    screen = <GameScreen userPickedNumber={userNumber} />;
+    screen = <GameScreen userPickedNumber={userNumber} onGameOver={gameOverHandler} />;
+  }
+
+  // If the state of the app changes i.e. game is over, then render the game over screen
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen />;
   }
 
   return (
