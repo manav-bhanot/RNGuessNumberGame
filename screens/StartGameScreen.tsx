@@ -2,7 +2,7 @@
 /* eslint-disable radix */
 /* eslint-disable prettier/prettier */
 
-import {Alert, Dimensions, StyleSheet, TextInput, View, useWindowDimensions} from 'react-native';
+import {Alert, KeyboardAvoidingView, StyleSheet, TextInput, View, useWindowDimensions} from 'react-native';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import React, { useState } from 'react';
 import Colors from '../constants/Colors';
