@@ -2,7 +2,7 @@
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, Dimensions} from 'react-native';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 import Colors from '../constants/Colors';
@@ -29,6 +29,8 @@ function GameOverScreen(props: any) {
 
 export default GameOverScreen;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
@@ -37,9 +39,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   imageContainer: {
-    width: 300,
-    height: 300,
-    borderRadius: 150,
+    width: deviceWidth < 380 ? 150 : 300,
+    height: deviceWidth < 380 ? 150 : 300,
+    borderRadius: deviceWidth < 380 ? 75 : 150,
     borderWidth: 3,
     borderColor: 'black',
     overflow: 'hidden', //make sure to hide the square and rectangular nature of container of the image
