@@ -3,7 +3,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-trailing-spaces */
 import React, {useState, useEffect} from 'react';
-import {Alert, FlatList, StyleSheet, Text, View} from 'react-native';
+import {Alert, FlatList, StyleSheet, Text, View, useWindowDimensions} from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
@@ -33,6 +33,8 @@ function GameScreen(this: any, props: any) {
     maxBoundary,
     props.userPickedNumber,
   );
+
+  const windowDimension = useWindowDimensions();
 
   const [guessedNumber, setGuessedNumber] = useState(initialGuess);
 
@@ -79,9 +81,8 @@ function GameScreen(this: any, props: any) {
     setGuessRoundsArray(prevGuessRoundsArray => [newGuess, ...prevGuessRoundsArray]);
   };
 
-  return (
-    <View style={styles.screen}>
-      <Title>Opponent's Guess</Title>
+  let content = (
+    <>
       <NumberContainer>{guessedNumber}</NumberContainer>
       <Card>
         <InstructionText style={styles.instructionText}>
@@ -100,6 +101,33 @@ function GameScreen(this: any, props: any) {
           </View>
         </View>
       </Card>
+    </>
+  );
+
+  if (windowDimension.width > 500) {
+    content = (
+      <>
+        <View style={styles.buttonsContainerWide}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={guessNewNumber.bind(this, 'lower')}>
+              Guess Lower
+            </PrimaryButton>
+          </View>
+          <NumberContainer>{guessedNumber}</NumberContainer>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton onPress={guessNewNumber.bind(this, 'higher')}>
+              Guess Higher
+            </PrimaryButton>
+          </View>
+        </View>
+      </>
+    );
+  }
+
+  return (
+    <View style={styles.screen}>
+      <Title>Opponent's Guess</Title>
+      {content}
       <View style={styles.listContainer}>
         {/* {guessRoundsArray.map(guessRound => (
           <Text key={guessRound}>{guessRound}</Text>
@@ -139,5 +167,9 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     padding: 16,
+  },
+  buttonsContainerWide: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
