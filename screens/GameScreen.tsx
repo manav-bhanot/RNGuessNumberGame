@@ -9,6 +9,7 @@ import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
+import GuessLogItem from '../components/game/GuessLogItem';
 
 // The initial random number guessed by the app.
 // We do not want the first random number which is guessed by app to be equal to what the user has picked
@@ -41,7 +42,7 @@ function GameScreen(this: any, props: any) {
   useEffect(() => {
     if (guessedNumber === props.userPickedNumber) {
       // Call a function in App.js so as to change the state and hide the game screen and load the game over screen
-      props.onGameOver();
+      props.onGameOver(guessRoundsArray.length);
     }
   }, [props.userPickedNumber, props.onGameOver, guessedNumber]);
 
@@ -99,14 +100,19 @@ function GameScreen(this: any, props: any) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         {/* {guessRoundsArray.map(guessRound => (
           <Text key={guessRound}>{guessRound}</Text>
         ))} */}
         <FlatList
           data={guessRoundsArray}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}
-          keyExtractor={(item) => item}
+          renderItem={itemData => (
+            <GuessLogItem
+              roundNumber={guessRoundsArray.length - itemData.index}
+              guess={itemData.item}
+            />
+          )}
+          keyExtractor={item => item}
         />
       </View>
     </View>
@@ -129,5 +135,9 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'center',
+  },
+  listContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
