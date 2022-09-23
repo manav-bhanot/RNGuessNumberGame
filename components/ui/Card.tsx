@@ -3,19 +3,21 @@
 /* eslint-disable no-trailing-spaces */
 
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Dimensions} from 'react-native';
 
-function Card(props) {
+function Card(props: any) {
   return <View style={styles.card}>{props.children}</View>;  
 }
 
 export default Card;
 
+const deviceWidth = Dimensions.get('window').width;
+
 const styles = StyleSheet.create({
   card: {
     justifyContent: 'center', // Position elements along the main axis which by default is column (top to bottom). Default flex direction in RN is COLUMN
     alignItems: 'center', // Default value is stretch. Positions elements in the cross axis which is OPPOSITE of the main axis
-    marginTop: 36,
+    marginTop: deviceWidth < 380 ? 18 : 36,
     marginHorizontal: 24,
     padding: 16,
     backgroundColor: '#4e0329',
