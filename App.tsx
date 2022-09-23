@@ -12,7 +12,7 @@
 
 
 import React, { useState } from 'react';
-import {StyleSheet, View, ImageBackground, SafeAreaView} from 'react-native';
+import {StyleSheet, View, ImageBackground, SafeAreaView, StatusBar} from 'react-native';
 import Colors from './constants/Colors';
 import GameOverScreen from './screens/GameOverScreen';
 import GameScreen from './screens/GameScreen';
@@ -60,15 +60,18 @@ export default function App() {
   }
 
   return (
-    <View style={styles.rootScreen}>
-      <ImageBackground
-        source={require('./assets/images/background.png')}
-        resizeMode="cover"
-        imageStyle={styles.backgroundImage}
-        style={styles.imageBackgroundView}>
-        <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
-      </ImageBackground>
-    </View>
+    <>
+      <StatusBar barStyle="light-content" />
+      <View style={styles.rootScreen}>
+        <ImageBackground
+          source={require('./assets/images/background.png')}
+          resizeMode="cover"
+          imageStyle={styles.backgroundImage}
+          style={styles.imageBackgroundView}>
+          <SafeAreaView style={styles.rootScreen}>{screen}</SafeAreaView>
+        </ImageBackground>
+      </View>
+    </>
   );
 }
 
