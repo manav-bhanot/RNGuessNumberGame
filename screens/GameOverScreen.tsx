@@ -39,13 +39,14 @@ function GameOverScreen(props: any) {
         <View style={[styles.imageContainer, imageStyle]}>
           <Image
             style={styles.image}
-            source={require('../assets/images/gameOver.png')} />
+            source={require('../assets/images/gameOver.png')}
+          />
         </View>
         <View>
           <Text style={styles.summaryText}>
-            Your phone took{' '}
+            Your phone took
             <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
-            guess the number{' '}
+            guess the number.
             <Text style={styles.highlight}>{props.userPickedNumber}</Text>
           </Text>
         </View>

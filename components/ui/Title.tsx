@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View} from 'react-native';
 
 function Title(props: any) {
   return (
@@ -16,7 +16,8 @@ export default Title;
 const styles = StyleSheet.create({
   rootContainer: {
     borderColor: 'white',
-    borderWidth: 2,
+    // borderWidth: Platform.OS === 'android' ?  2 : 0,
+    borderWidth: Platform.select({ios: 0, android: 2}),
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
